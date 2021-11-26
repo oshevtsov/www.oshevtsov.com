@@ -1,28 +1,35 @@
 @use 'sass:color';
 @use './partials/variables' as v;
 @use './partials/mixins' as *;
+@use './partials/utils';
 
 .container {
   max-width: 192rem;
   min-height: 100vh;
   margin: 0 auto;
+
   display: flex;
   flex-direction: column;
 }
 
-.mainContent {
-  flex: 1;
+.hero-img {
+  z-index: -1;
+}
+
+.content {
+  position: relative;
   padding: 4rem 8rem;
+
+  flex: 1;
   display: flex;
   flex-direction: column;
-  position: relative;
+
   background-image: linear-gradient(
     to right,
     rgba(v.$color-gray-dark-2, 0.8),
-    rgba(v.$color-gray-dark-2, 0.8)),
-    url(/images/hero.webp);
+    rgba(v.$color-gray-dark-2, 0.8)
+  );
   background-size: cover;
-  background-position: top;
 
   @include respond(tab-land) {
     padding: 2rem 4rem;
@@ -39,7 +46,7 @@
     justify-content: center;
   }
 
-  .pitch {
+  &__pitch {
     max-width: 65rem;
 
     @include respond(tab-land) {
@@ -47,7 +54,7 @@
     }
   }
 
-  .profile {
+  &__img {
     display: block;
     position: relative;
 
@@ -55,9 +62,4 @@
       display: none;
     }
   }
-  // clip-path: polygon(0 0, 100% 0, 100% 75%, 0 100%);
-}
-
-.mbDesktop {
-  margin-bottom: 2rem;
 }

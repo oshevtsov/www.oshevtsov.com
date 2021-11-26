@@ -15,20 +15,29 @@ const Home: NextPage = () => {
         <link rel="icon" href="/favicon.ico" />
       </Head>
 
-      <div className={styles.container}>
-        <div className={styles.mainContent}>
+      <div className={styles['container']}>
+        <Image
+          className={styles['hero-img']}
+          src="/images/hero.jpg"
+          alt="Swedish landscape background"
+          layout="fill"
+          objectFit="cover"
+          priority
+        />
+
+        <div className={styles['content']}>
           <NavBar />
 
-          <main className={styles.main}>
-            <div className={styles.pitch}>
-              <h1 className={styles.mbDesktop}>
+          <main className={styles['main']}>
+            <div className={styles['main__pitch']}>
+              <h1>
                 Hi, I am Oleksii.
               </h1>
-              <h2 className={styles.subtitle}>
+              <h2 className={styles['mt-2']}>
                 Software engineer, technology enthusiast, and avid learner based in Sweden.
               </h2>
             </div>
-            <div className={styles.profile}>
+            <div className={styles['main__img']}>
               <Image
                 className={styles.image}
                 src="/images/oleksii-desktop.png"
