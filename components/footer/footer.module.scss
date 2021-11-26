@@ -1,0 +1,12 @@
+@use '../../styles/partials/variables' as v;
+
+.footer {
+  display: flex;
+  padding: 2rem 0;
+  border-top: 1px solid v.$color-gray-light-2;
+  justify-content: center;
+  align-items: center;
+  background-color: v.$color-gray-dark-1;
+  font-size: 1.6rem;
+}
+

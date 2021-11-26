@@ -1,0 +1,109 @@
+@use 'sass:color';
+@use './partials/variables' as v;
+
+.container {
+  max-width: 192rem;
+  min-height: 100vh;
+  margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+}
+
+.mainContent {
+  flex: 1;
+  padding: 4rem 8rem;
+  display: flex;
+  flex-direction: column;
+  position: relative;
+  background-image: linear-gradient(
+    to right,
+    rgba(v.$color-gray-dark-2, 0.8),
+    rgba(v.$color-gray-dark-2, 0.8)),
+    url(/images/hero.webp);
+  background-size: cover;
+  background-position: top;
+}
+
+.header {
+  font-size: 2rem;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 100%;
+
+  .handle {
+    font-family: monospace;
+    font-size: 125%;
+  }
+
+  .navigation {
+    flex: 1;
+    display: flex;
+    justify-content: flex-end;
+
+    & > * {
+      display: block;
+      margin-right: 6rem;
+    }
+  }
+
+  .mode {
+    width: 2em;
+    line-height: 1;
+    border: none;
+    border-radius: 50%;
+
+    @media (prefers-color-scheme: dark) {
+      background-color: v.$color-gray-light-2;
+      svg {
+        color: v.$color-gray-dark-1;
+        fill: v.$color-gray-dark-1;
+      }
+    }
+
+    @media (prefers-color-scheme: light) {
+      background-color: v.$color-gray-dark-1;
+      svg {
+        color: v.$color-gray-light-2;
+        fill: v.$color-gray-light-2;
+      }
+    }
+  }
+}
+
+.main {
+  flex: 1;
+  display: grid;
+  grid-template-columns: minmax(65rem, 1fr) 1fr max-content;
+  align-items: center;
+
+  .pitch {
+    grid-column: 1 / span 1;
+    justify-content: center;
+  }
+
+  .profile {
+    grid-column: 3 / span 1;
+    position: relative;
+    align-content: center;
+  }
+  // clip-path: polygon(0 0, 100% 0, 100% 75%, 0 100%);
+}
+
+.image {
+ display: block;
+}
+
+.mbDesktop {
+  margin-bottom: 2rem;
+}
+
+.footer {
+  display: flex;
+  padding: 2rem 0;
+  border-top: 1px solid v.$color-gray-light-2;
+  justify-content: center;
+  align-items: center;
+  background-color: v.$color-gray-dark-1;
+  font-size: 1.6rem;
+}

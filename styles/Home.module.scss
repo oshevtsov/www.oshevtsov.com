@@ -1,0 +1,63 @@
+@use 'sass:color';
+@use './partials/variables' as v;
+@use './partials/mixins' as *;
+
+.container {
+  max-width: 192rem;
+  min-height: 100vh;
+  margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+}
+
+.mainContent {
+  flex: 1;
+  padding: 4rem 8rem;
+  display: flex;
+  flex-direction: column;
+  position: relative;
+  background-image: linear-gradient(
+    to right,
+    rgba(v.$color-gray-dark-2, 0.8),
+    rgba(v.$color-gray-dark-2, 0.8)),
+    url(/images/hero.webp);
+  background-size: cover;
+  background-position: top;
+
+  @include respond(tab-land) {
+    padding: 2rem 4rem;
+  }
+}
+
+.main {
+  flex: 1;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+
+  @include respond(tab-land) {
+    justify-content: center;
+  }
+
+  .pitch {
+    max-width: 65rem;
+
+    @include respond(tab-land) {
+      text-align: center;
+    }
+  }
+
+  .profile {
+    display: block;
+    position: relative;
+
+    @include respond(tab-land) {
+      display: none;
+    }
+  }
+  // clip-path: polygon(0 0, 100% 0, 100% 75%, 0 100%);
+}
+
+.mbDesktop {
+  margin-bottom: 2rem;
+}

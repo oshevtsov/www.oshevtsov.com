@@ -1,0 +1,134 @@
+@use '../../styles/partials/variables' as v;
+@use '../../styles/partials/mixins' as *;
+
+.header {
+  font-size: 2rem;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 100%;
+
+  .handle {
+    font-family: monospace;
+    font-size: 125%;
+  }
+
+  .container {
+    display: flex;
+    align-items: center;
+  }
+
+  .navigation {
+    display: flex;
+    & > * {
+      display: block;
+    }
+    & > *:not(:last-child) {
+      margin-right: 6rem;
+    }
+
+    @include respond(phone) {
+      display: none;
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      justify-content: center;
+      align-items: center;
+      background-color: v.$color-gray-dark-2;
+      flex-direction: column;
+      & > *:not(:last-child) {
+        margin-right: 0;
+        margin-bottom: 6rem;
+      }
+    }
+  }
+
+  .checkbox {
+    display: none;
+  }
+
+  .navButton {
+    cursor: pointer;
+    width: 6rem;
+    height: 6rem;
+    border-radius: 50%;
+    background-color: v.$color-gray-dark-2;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    z-index: 1000;
+    display: none;
+
+    @include respond(phone) {
+      display: flex;
+    }
+  }
+
+  .navIcon {
+    position: relative;
+
+    &,
+    &::before,
+    &::after {
+      width: 3rem;
+      height: 2px;
+      background-color: v.$color-gray-light-2;
+      display: block;
+    }
+
+    &::before,
+    &::after {
+      content: "";
+      position: absolute;
+      transition: all 0.2s;
+    }
+
+    &::before {
+      top: -0.8rem;
+    }
+
+    &::after {
+      top: 0.8rem;
+    }
+  }
+
+  .checkbox:checked ~ .navigation {
+    display: flex;
+  }
+
+  .checkbox:checked + .navButton .navIcon {
+    background-color: transparent;
+  }
+
+  .checkbox:checked + .navButton .navIcon::before {
+    top: 0;
+    transform: rotate(135deg);
+  }
+
+  .checkbox:checked + .navButton .navIcon::after {
+    top: 0;
+    transform: rotate(-135deg);
+  }
+
+  // .mode {
+  //   width: 2em;
+  //   line-height: 1;
+  //   border: none;
+  //   border-radius: 50%;
+  //   background-color: v.$color-gray-light-2;
+  //   svg {
+  //     color: v.$color-gray-dark-1;
+  //     fill: v.$color-gray-dark-1;
+  //   }
+
+  //   // @media (prefers-color-scheme: light) {
+  //   //   background-color: v.$color-gray-dark-1;
+  //   //   svg {
+  //   //     color: v.$color-gray-light-2;
+  //   //     fill: v.$color-gray-light-2;
+  //   //   }
+  //   // }
+  // }
+}
