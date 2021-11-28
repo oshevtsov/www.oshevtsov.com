@@ -1,8 +1,7 @@
-import type { NextComponentType } from 'next'
 import Link from 'next/link'
 import styles from './navbar.module.scss'
 
-const NavBar: NextComponentType = () => {
+const NavBar = () => {
   return (
     <header>
       <nav className={styles['nav']}>

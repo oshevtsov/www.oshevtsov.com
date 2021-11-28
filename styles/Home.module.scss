@@ -27,8 +27,8 @@
   background-image: linear-gradient(
     to right,
     rgba(v.$color-gray-dark-2, 0.8),
-    rgba(v.$color-gray-dark-2, 0.8)
-  );
+    rgba(v.$color-gray-dark-2, 0.8)),
+    url(/images/hero.webp);
   background-size: cover;
 
   @include respond(tab-land) {
@@ -43,6 +43,7 @@
   align-items: center;
 
   @include respond(tab-land) {
+    flex-direction: column;
     justify-content: center;
   }
 
@@ -50,16 +51,15 @@
     max-width: 65rem;
 
     @include respond(tab-land) {
+      margin-top: 4rem;
       text-align: center;
+      order: 1;
     }
   }
 
   &__img {
-    display: block;
-    position: relative;
-
-    @include respond(tab-land) {
-      display: none;
+    @include respond(tab-port) {
+      max-width: 75%;
     }
   }
 }

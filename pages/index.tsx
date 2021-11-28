@@ -1,10 +1,9 @@
 import type { NextPage } from 'next'
 import Head from 'next/head'
-import Image from 'next/image'
 import styles from '../styles/Home.module.scss'
 import Footer from '../components/footer'
 import NavBar from '../components/navbar'
-// import styles from '../styles/HomeGrid.module.scss'
+import ProfileImageArtDirection from '../components/profile-image'
 
 const Home: NextPage = () => {
   return (
@@ -16,15 +15,6 @@ const Home: NextPage = () => {
       </Head>
 
       <div className={styles['container']}>
-        <Image
-          className={styles['hero-img']}
-          src="/images/hero.jpg"
-          alt="Swedish landscape background"
-          layout="fill"
-          objectFit="cover"
-          priority
-        />
-
         <div className={styles['content']}>
           <NavBar />
 
@@ -37,16 +27,7 @@ const Home: NextPage = () => {
                 Software engineer, technology enthusiast, and avid learner based in Sweden.
               </h2>
             </div>
-            <div className={styles['main__img']}>
-              <Image
-                className={styles.image}
-                src="/images/oleksii-desktop.png"
-                alt="Oleksii Shevtsov"
-                width={500}
-                height={500}
-                priority
-              />
-            </div>
+            <ProfileImageArtDirection className={styles['main__img']} />
           </main>
         </div>
 
