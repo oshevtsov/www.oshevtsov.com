@@ -1,0 +1,34 @@
+@use './partials/mixins' as *;
+@use './partials/extends' as *;
+@use './partials/utils';
+
+.container {
+  @extend %background-image;
+}
+
+.content {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+
+  @include respond(tab-land) {
+    flex-direction: column;
+    justify-content: center;
+  }
+}
+
+.text {
+  max-width: 65rem;
+
+  @include respond(tab-land) {
+    margin-top: 4rem;
+    text-align: center;
+    order: 1;
+  }
+}
+
+.img {
+  @include respond(tab-port) {
+    max-width: 75%;
+  }
+}

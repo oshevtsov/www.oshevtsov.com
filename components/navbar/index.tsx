@@ -1,23 +1,48 @@
+import { useRouter } from 'next/router'
 import Link from 'next/link'
 import styles from './navbar.module.scss'
+import { useEffect } from 'react'
 
 const NavBar = () => {
+  const router = useRouter()
+  useEffect(() => {
+    const pathname = router.pathname
+    if (pathname !== '/') {
+      const regex = /(?<=\/)\w/
+      const ind = pathname.substring(1).search(regex)
+      const path = ind < 0 ? pathname : pathname.substring(0, ind)
+      document
+        .querySelectorAll(`a[href='${path}']`)
+        .forEach(el => el?.classList.add(styles['nav__current-item']))
+    }
+  })
+
   return (
     <header>
       <nav className={styles['nav']}>
-        <div className={styles['nav__left']}>@oshevtsov</div>
+        <div className={styles['nav__left']}>
+          <Link href="/">
+            <a>@oshevtsov</a>
+          </Link>
+        </div>
         <div className={styles['nav__right']}>
-          <input id="nav-burger" type="checkbox" className={styles['nav__checkbox']} />
+          <input
+            id="nav-burger"
+            type="checkbox"
+            className={styles['nav__checkbox']}
+          />
           <label htmlFor="nav-burger" className={styles['nav__button']}>
-            <span className={styles['nav__icon']}>&nbsp;</span>
+            <span className={styles['nav__icon']}></span>
           </label>
           <div className={styles['nav__items']}>
             <Link href="/about">
               <a>About me</a>
             </Link>
+            {/*
             <Link href="/cv">
               <a>CV</a>
             </Link>
+            */}
             <Link href="/blog">
               <a>Blog</a>
             </Link>

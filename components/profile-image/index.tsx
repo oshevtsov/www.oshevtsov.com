@@ -10,7 +10,7 @@ const ProfileImageArtDirection = ({ className }: Props) => {
       <picture>
         <source media={`(max-width: ${styles['mobile-image-max-width']})`} srcSet="/images/oleksii-mobile.webp" />
         <source media={`(min-width: ${styles['desktop-image-min-width']})`} srcSet="/images/oleksii-desktop.webp" />
-        <img style={{width: '100%'}} src="/images/oleksii-mobile.webp" alt="Oleksii Shevtsov" />
+        <img style={{width: '100%'}} src="/images/oleksii-mobile.png" alt="Oleksii Shevtsov" />
       </picture>
     </div>
   )

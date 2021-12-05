@@ -11,3 +11,16 @@
     @media only screen and (max-width: v.$bp-l) { @content };
   }
 }
+
+@mixin default-padding($vertical) {
+  padding: $vertical $vertical * 2;
+}
+
+@mixin default-flex($gap, $direction: row) {
+  display: flex;
+  gap: $gap;
+
+  @if $direction != row {
+    flex-direction: $direction;
+  }
+}

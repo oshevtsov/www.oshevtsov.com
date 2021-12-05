@@ -1,0 +1,45 @@
+@use '../partials/variables' as v;
+@use '../partials/mixins' as *;
+@use '../partials/extends' as *;
+
+.container {
+  @extend %background-dark;
+}
+
+.content {
+  max-width: 100rem;
+  margin: 0 auto;
+  @include default-flex(3rem, column);
+}
+
+.feed {
+  @include default-flex(3rem, column);
+}
+
+.card {
+  @include default-flex(1rem, column);
+  padding: 2rem;
+  background-color: v.$color-gray-dark-2;
+  box-shadow: v.$card-shadow;
+  font-size: 1.8rem;
+
+  p {
+    overflow: hidden;
+    display: -webkit-box;
+    -webkit-box-orient: vertical;
+    -webkit-line-clamp: 2;
+
+    @include respond(phone) {
+      -webkit-line-clamp: 3;
+    }
+  }
+
+  small {
+    @include default-flex(1rem);
+    font-weight: bold;
+    flex-wrap: wrap;
+    & > * {
+      display: inline-block;
+    }
+  }
+}

@@ -1,15 +1,15 @@
 @use '../../styles/partials/variables' as v;
+@use '../../styles/partials/extends' as *;
 
 .footer {
-  position: relative;
-  font-size: 1.6rem;
-  padding: 2rem 0;
-
-  border-top: 1px solid v.$color-gray-light-2;
-  background-color: v.$color-gray-dark-1;
+  @extend %background-dark;
 
   display: flex;
   justify-content: center;
   align-items: center;
+
+  padding: 2rem 0;
+  font-size: 1.6rem;
+  border-top: v.$line-light;
 }
 

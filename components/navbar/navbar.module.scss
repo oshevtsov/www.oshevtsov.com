@@ -1,11 +1,18 @@
 @use '../../styles/partials/variables' as v;
+@use '../../styles/partials/extends' as *;
 @use '../../styles/partials/mixins' as *;
 
 .nav {
-  font-size: 2rem;
-  width: 100%;
+  @extend %background-dark;
+  @extend %content-padding;
+
   display: flex;
   justify-content: space-between;
+  align-items: center;
+
+  border-bottom: v.$line-light;
+  font-size: 2rem;
+  width: 100%;
 
   &__left {
     font-family: monospace;
@@ -68,15 +75,11 @@
   }
 
   &__items {
-    display: flex;
+    @include default-flex(6rem);
     align-items: center;
 
     & > * {
       display: block;
-
-      &:not(:last-child) {
-        margin-right: 6rem;
-      }
     }
 
     @include respond(phone) {
@@ -84,22 +87,23 @@
     }
   }
 
+  &__current-item {
+    border-bottom: 1px solid currentColor;
+  }
+
   &__checkbox:checked ~ &__items {
     display: flex;
     flex-direction: column;
     justify-content: center;
 
+    font-size: 125%;
     position: absolute;
+    z-index: 100;
     top: 0;
     left: 0;
     width: 100%;
     height: 100%;
-    background-color: v.$color-gray-dark-2;
-
-    & > *:not(:last-child) {
-      margin-right: 0;
-      margin-bottom: 6rem;
-    }
+    @extend %background-dark;
   }
 
   &__checkbox:checked + &__button &__icon {
