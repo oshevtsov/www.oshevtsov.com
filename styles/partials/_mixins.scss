@@ -24,3 +24,13 @@
     flex-direction: $direction;
   }
 }
+
+@mixin default-small($gap) {
+  @include default-flex($gap);
+  line-height: 1;
+  font-weight: bold;
+  flex-wrap: wrap;
+  & > * {
+    display: inline-block;
+  }
+}

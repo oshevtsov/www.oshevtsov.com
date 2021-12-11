@@ -8,18 +8,26 @@
     "lint": "next lint"
   },
   "dependencies": {
+    "date-fns": "^2.27.0",
     "next": "^12.0.4",
+    "nord": "^0.2.1",
     "react": "^17.0.2",
-    "react-dom": "^17.0.2"
+    "react-dom": "^17.0.2",
+    "rehype-react": "^7.0.3",
+    "remark-frontmatter": "^4.0.1",
+    "remark-parse": "^10.0.1",
+    "remark-rehype": "^10.1.0",
+    "sass": "^1.44.0",
+    "sharp": "^0.29.3",
+    "to-vfile": "^7.2.2",
+    "typescript": "^4.5.2",
+    "unified": "^10.1.1",
+    "vfile-matter": "^3.0.1"
   },
   "devDependencies": {
-    "@types/node": "^16.11.9",
+    "@types/node": "^16.11.12",
     "@types/react": "^17.0.35",
     "eslint": "7",
-    "eslint-config-next": "^12.0.4",
-    "nord": "^0.2.1",
-    "sass": "^1.43.4",
-    "sharp": "^0.29.3",
-    "typescript": "^4.5.2"
+    "eslint-config-next": "^12.0.4"
   }
 }

@@ -10,31 +10,34 @@
   max-width: 100rem;
   margin: 0 auto;
   @include default-flex(3rem, column);
-}
-
-.feed {
-  @include default-flex(3rem, column);
-}
-
-.card {
-  @include default-flex(1.5rem, column);
-  padding: 2rem;
-  background-color: v.$color-gray-dark-2;
-  box-shadow: v.$card-shadow;
   font-size: 1.8rem;
+}
+
+.back button {
+  border: none;
+  background-color: transparent;   
+  font-size: 125%;
+  color: currentColor;
+  cursor: pointer;
+
+  &:hover, &:active {
+    color: v.$color-primary;
+  }
+}
+
+.frontmatter {
+  @include default-flex(1.5rem, column);
 
   p {
-    overflow: hidden;
-    display: -webkit-box;
-    -webkit-box-orient: vertical;
-    -webkit-line-clamp: 2;
-
-    @include respond(phone) {
-      -webkit-line-clamp: 3;
-    }
+    font-size: 125%;
+    line-height: 1.3;
   }
 
   small {
     @include default-small(1.5rem);
   }
+}
+
+.markdown {
+  @include default-flex(1.5rem, column);
 }
