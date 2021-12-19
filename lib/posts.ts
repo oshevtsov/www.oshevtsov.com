@@ -5,11 +5,16 @@ import { matter, VFile } from 'vfile-matter'
 import { format, formatISO, compareDesc } from 'date-fns'
 import { unified } from 'unified'
 import remarkParse from 'remark-parse'
+import remarkUnwrapImages from 'remark-unwrap-images'
+import { visit } from 'unist-util-visit'
+import { imageSize } from 'image-size'
+import { Transformer } from 'unified'
 import { cleanNodes, Root } from './utils'
 
 const stripMdExtension = (fileName: string): string =>
   fileName.replace(/\.md$/, '')
 const postsDirectory: string = path.join(process.cwd(), 'posts')
+const publicDirectory: string = path.join(process.cwd(), 'public')
 
 function parseMarkdown(fullPath: string): VFile {
   return matter(vfile.readSync(fullPath), { strip: true })
@@ -111,12 +116,25 @@ export interface PostData {
   mdRoot: Root
 }
 
+function addImageMetadata(): Transformer<Root, Root> {
+  return (tree: Root, _) => {
+    visit(tree, 'image', (node) => {
+      const imageURL = path.join(publicDirectory, node.url)
+      const { width, height } = imageSize(imageURL)
+      node.data = {
+        width,
+        height
+      }
+    })
+  }
+}
+
 export function getPostData(id: string | string[]): PostData {
   const postId = typeof id === 'string' ? id : id.join('-')
   const fullPath = path.join(postsDirectory, `${postId}.md`)
   const file = parseMarkdown(fullPath)
   const frontMatter = file.data.matter ? stringifyFrontMatter(file.data.matter) : {}
-  const pipeline = unified().use(remarkParse)
+  const pipeline = unified().use(remarkParse).use(remarkUnwrapImages).use(addImageMetadata)
   const mdRoot: Root = pipeline.runSync(pipeline.parse(file))
   cleanNodes(mdRoot)
 

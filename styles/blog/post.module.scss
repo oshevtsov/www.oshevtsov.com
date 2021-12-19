@@ -41,3 +41,9 @@
 .markdown {
   @include default-flex(1.5rem, column);
 }
+
+.image {
+  position: relative;
+  width: 100%;
+  aspect-ratio: 16 / 9;
+}

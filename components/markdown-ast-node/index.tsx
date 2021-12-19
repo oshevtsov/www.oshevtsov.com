@@ -1,5 +1,7 @@
 import React from 'react'
+import Image from 'next/image'
 import { isParent, ASTNode, Content } from '../../lib/utils'
+import styles from '../../styles/blog/post.module.scss'
 
 type MDPropsWithChildren = React.ComponentPropsWithoutRef<React.ElementType>
 type HeadingDepth = 1 | 2 | 3 | 4 | 5 | 6
@@ -7,6 +9,7 @@ type HeadingDepth = 1 | 2 | 3 | 4 | 5 | 6
 const MDRoot = ({ children }: MDPropsWithChildren) => <>{children}</>
 const MDParagraph = ({ children }: MDPropsWithChildren) => <p>{children}</p>
 const MDEmphasis = ({ children }: MDPropsWithChildren) => <em>{children}</em>
+const MDStrong = ({ children }: MDPropsWithChildren) => <strong>{children}</strong>
 const MDHeading1 = ({ children }: MDPropsWithChildren) => <h1>{children}</h1>
 const MDHeading2 = ({ children }: MDPropsWithChildren) => <h2>{children}</h2>
 const MDHeading3 = ({ children }: MDPropsWithChildren) => <h3>{children}</h3>
@@ -42,6 +45,9 @@ const getMarkdownASTParentNode = (ast: ASTNode) => {
     case 'emphasis':
       return MDEmphasis
 
+    case 'strong':
+      return MDStrong
+
     case 'heading':
       const { depth = 2 } = ast
       return getMDHeading(depth)
@@ -62,6 +68,26 @@ const MarkdonwASTLiteralNode = (props: MarkdownProps) => {
     case 'text':
       const { value } = ast
       return <>{value}</>
+
+    case 'image':
+      const { url, alt, title, data } = ast
+      const optionalAttrs: Record<string, string | number> = {}
+      if (title) optionalAttrs.title = title
+      if (data) {
+        if (typeof data.width === 'number') optionalAttrs.width = data.width
+        if (typeof data.height === 'number') optionalAttrs.height = data.height
+      }
+      const shouldDisplay = (optionalAttrs.width > 0) && (optionalAttrs.height > 0)
+      return shouldDisplay ? (
+        <div className={styles.image}>
+          <Image
+            src={url}
+            alt={alt ? alt : ""}
+            layout="responsive"
+            {...optionalAttrs}
+          />
+        </div>
+      ) : null
 
     default:
       console.log(`Will not render - unhandled node type: ${ast.type}`)

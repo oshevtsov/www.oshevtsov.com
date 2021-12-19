@@ -5,11 +5,13 @@ updated: 2021-12-12
 abstract: Sit suscipit distinctio veniam qui earum. Dolores accusamus esse animi eaque voluptatibus officiis Sequi ipsa voluptas vel veritatis nam veritatis.
 ---
 
+![Cinnamon buns](/images/blog/example-post-1/post-hero.jpg "Best buns")
+
 ## This is subheading
 ### This is subsubheading
 
-This is my first paragraph. Adipisicing perspiciatis pariatur voluptatem
-commodi voluptates? Id odio rerum architecto placeat aut Aliquam quod cumque
+This is my first paragraph. *Adipisicing perspiciatis pariatur* voluptatem
+commodi voluptates? **Id odio rerum architecto placeat aut** Aliquam quod cumque
 voluptatem vero tenetur maxime. Deleniti repellat nulla ratione quisquam quos.
 Quo nisi nisi perferendis impedit.
 
