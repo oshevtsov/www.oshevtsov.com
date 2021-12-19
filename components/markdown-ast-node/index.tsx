@@ -79,14 +79,19 @@ const MarkdonwASTLiteralNode = (props: MarkdownProps) => {
       }
       const shouldDisplay = (optionalAttrs.width > 0) && (optionalAttrs.height > 0)
       return shouldDisplay ? (
-        <div className={styles.image}>
+        <figure className={styles.image}>
           <Image
             src={url}
             alt={alt ? alt : ""}
             layout="responsive"
             {...optionalAttrs}
           />
-        </div>
+          {
+            optionalAttrs.title
+              ? <figcaption>{optionalAttrs.title}</figcaption>
+              : null
+          }
+        </figure>
       ) : null
 
     default:
