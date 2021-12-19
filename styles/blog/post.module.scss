@@ -49,4 +49,16 @@
       font-weight: 300;
     }
   }
+
+  a {
+    &:link,
+    &:visited {
+      color: v.$color-primary-light;
+    }
+
+    &:hover,
+    &:active {
+      color: v.$color-primary-dark;
+    }
+  }
 }

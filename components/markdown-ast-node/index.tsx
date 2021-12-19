@@ -3,7 +3,7 @@ import Image from 'next/image'
 import { isParent, ASTNode, Content } from '../../lib/utils'
 import styles from '../../styles/blog/post.module.scss'
 
-type MDPropsWithChildren = React.ComponentPropsWithoutRef<React.ElementType>
+type MDPropsWithChildren = React.PropsWithChildren<{}>
 type HeadingDepth = 1 | 2 | 3 | 4 | 5 | 6
 
 const MDRoot = ({ children }: MDPropsWithChildren) => <>{children}</>
@@ -32,29 +32,49 @@ const getMDHeading = (depth: HeadingDepth) => {
       return MDHeading6
   }
 }
+
+interface LinkProps {
+  url: string
+  title?: string
+}
+type MDLinkProps = React.PropsWithChildren<LinkProps>
+const MDLink = ({ children, url, title }: MDLinkProps) => (
+  <a href={url} title={title} target="_blank" rel="noopener noreferrer">
+    {children}
+  </a>
+)
+
 const MDUnknownParent = () => null
 
-const getMarkdownASTParentNode = (ast: ASTNode) => {
+interface ParentNodeData {
+  component: React.ComponentType<any>
+  props?: Record<string, any>
+}
+const getMarkdownASTParentNodeData = (ast: ASTNode): ParentNodeData => {
   switch (ast.type) {
     case 'root':
-      return MDRoot
+      return { component: MDRoot, }
 
     case 'paragraph':
-      return MDParagraph
+      return { component: MDParagraph, }
 
     case 'emphasis':
-      return MDEmphasis
+      return { component: MDEmphasis, }
 
     case 'strong':
-      return MDStrong
+      return { component: MDStrong, }
 
     case 'heading':
       const { depth = 2 } = ast
-      return getMDHeading(depth)
+      return { component: getMDHeading(depth), }
+
+    case 'link':
+      const { url, title } = ast
+      return { component: MDLink, props: { url, title } }
 
     default:
       console.log(`Will not render - unhandled node type: ${ast.type}`)
-      return MDUnknownParent
+      return { component: MDUnknownParent, }
   }
 }
 
@@ -103,10 +123,12 @@ const MarkdonwASTLiteralNode = (props: MarkdownProps) => {
 const MarkdownASTNode = (props: MarkdownProps) => {
   const { ast } = props
   if (isParent(ast)) {
-    const MarkdownASTParentNode = getMarkdownASTParentNode(ast)
+    const nodeData = getMarkdownASTParentNodeData(ast)
+    const MarkdownASTParentNode = nodeData.component
+    const props = nodeData.props ? nodeData.props : {}
     const { children } = ast
     return (
-      <MarkdownASTParentNode>
+      <MarkdownASTParentNode {...props}>
         {children.map((child: Content, index: number) => (
           <MarkdownASTNode
             key={`${child.type}-${index}`}
