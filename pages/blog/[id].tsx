@@ -54,14 +54,14 @@ const Post: NextPage<PostData> = ({ frontMatter, mdRoot }) => {
         <p>{frontMatter.abstract}</p>
         <small>
           <span>
-            Published{' '}
+            Published:{' '}
             <Date
               dateTime={frontMatter.published?.dateTime}
               display={frontMatter.published?.display}
             />
           </span>
           <span>
-            Last updated{' '}
+            Updated:{' '}
             <Date
               dateTime={frontMatter.updated?.dateTime}
               display={frontMatter.updated?.display}

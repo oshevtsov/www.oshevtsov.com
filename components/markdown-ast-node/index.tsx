@@ -10,6 +10,9 @@ const MDRoot = ({ children }: MDPropsWithChildren) => <>{children}</>
 const MDParagraph = ({ children }: MDPropsWithChildren) => <p>{children}</p>
 const MDEmphasis = ({ children }: MDPropsWithChildren) => <em>{children}</em>
 const MDStrong = ({ children }: MDPropsWithChildren) => <strong>{children}</strong>
+const MDOrderedList = ({ children }: MDPropsWithChildren) => <ol>{children}</ol>
+const MDUnorderedList = ({ children }: MDPropsWithChildren) => <ul>{children}</ul>
+const MDListItem = ({ children }: MDPropsWithChildren) => <li>{children}</li>
 const MDHeading1 = ({ children }: MDPropsWithChildren) => <h1>{children}</h1>
 const MDHeading2 = ({ children }: MDPropsWithChildren) => <h2>{children}</h2>
 const MDHeading3 = ({ children }: MDPropsWithChildren) => <h3>{children}</h3>
@@ -71,6 +74,13 @@ const getMarkdownASTParentNodeData = (ast: ASTNode): ParentNodeData => {
     case 'link':
       const { url, title } = ast
       return { component: MDLink, props: { url, title } }
+
+    case 'list':
+      const { ordered } = ast
+      return { component: ordered ? MDOrderedList : MDUnorderedList, }
+
+    case 'listItem':
+      return { component: MDListItem, }
 
     default:
       console.log(`Will not render - unhandled node type: ${ast.type}`)

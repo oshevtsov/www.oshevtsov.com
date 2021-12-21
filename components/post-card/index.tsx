@@ -18,14 +18,14 @@ const PostCard = ({ className, postData }: Props) => {
       <p>{postData.frontMatter?.abstract}</p>
       <small>
         <span>
-          Published{' '}
+          Published:{' '}
           <Date
             dateTime={postData.frontMatter?.published.dateTime}
             display={postData.frontMatter?.published.display}
           />
         </span>
         <span>
-          Last updated{' '}
+          Updated:{' '}
           <Date
             dateTime={postData.frontMatter?.updated.dateTime}
             display={postData.frontMatter?.updated.display}

@@ -61,4 +61,16 @@
       color: v.$color-primary-dark;
     }
   }
+
+  ul, ol {
+    padding-left: 4rem;
+
+    li:not(:first-child) {
+      margin-top: 1.5rem;
+    }
+
+    li > p:not(:first-child) {
+      margin-top: 1rem;
+    }
+  }
 }
