@@ -134,7 +134,10 @@ export function getPostData(id: string | string[]): PostData {
   const fullPath = path.join(postsDirectory, `${postId}.md`)
   const file = parseMarkdown(fullPath)
   const frontMatter = file.data.matter ? stringifyFrontMatter(file.data.matter) : {}
-  const pipeline = unified().use(remarkParse).use(remarkUnwrapImages).use(addImageMetadata)
+  const pipeline = unified()
+    .use(remarkParse)
+    .use(remarkUnwrapImages)
+    .use(addImageMetadata)
   const mdRoot: Root = pipeline.runSync(pipeline.parse(file))
   cleanNodes(mdRoot)
 

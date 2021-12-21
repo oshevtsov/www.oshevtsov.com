@@ -34,3 +34,5 @@ This is my first ordered list:
 1. Elit voluptate neque nobis quidem repudiandae Corrupti rerum fugiat distinctio sit voluptates voluptate cum voluptate
 2. Ipsum dolorum aut eligendi recusandae impedit Deserunt consequatur magni eum nemo quidem. Assumenda quasi vitae earum nobis aperiam recusandae! Sequi animi sapiente!
 3. Adipisicing iste excepturi dolorem doloribus quo consequuntur numquam Architecto quas sit incidunt saepe ducimus. Atque omnis qui nulla voluptate officiis Sapiente magnam quae corporis in quos? Ea non quos quis officia explicabo. Error non amet non temporibus voluptates magni? Amet!
+
+Here is a link to [another page on the same site](/blog/example-post-2 "Second post").

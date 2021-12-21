@@ -1,5 +1,6 @@
 import React from 'react'
 import Image from 'next/image'
+import Link from 'next/link'
 import { isParent, ASTNode, Content } from '../../lib/utils'
 import styles from '../../styles/blog/post.module.scss'
 
@@ -41,11 +42,25 @@ interface LinkProps {
   title?: string
 }
 type MDLinkProps = React.PropsWithChildren<LinkProps>
-const MDLink = ({ children, url, title }: MDLinkProps) => (
-  <a href={url} title={title} target="_blank" rel="noopener noreferrer">
-    {children}
-  </a>
-)
+
+function isURLRelative(url: string): boolean {
+  return url.startsWith('/')
+}
+
+const MDLink = ({ children, url, title }: MDLinkProps) => {
+  const isRelative = isURLRelative(url)
+  return isRelative ? (
+    <Link href={url}>
+      <a title={title}>
+        {children}
+      </a>
+    </Link>
+  ) : (
+    <a href={url} title={title} target="_blank" rel="noopener noreferrer">
+      {children}
+    </a>
+  )
+}
 
 const MDUnknownParent = () => null
 
@@ -53,6 +68,7 @@ interface ParentNodeData {
   component: React.ComponentType<any>
   props?: Record<string, any>
 }
+
 const getMarkdownASTParentNodeData = (ast: ASTNode): ParentNodeData => {
   switch (ast.type) {
     case 'root':
@@ -73,7 +89,7 @@ const getMarkdownASTParentNodeData = (ast: ASTNode): ParentNodeData => {
 
     case 'link':
       const { url, title } = ast
-      return { component: MDLink, props: { url, title } }
+      return { component: MDLink, props: { url, title, } }
 
     case 'list':
       const { ordered } = ast
