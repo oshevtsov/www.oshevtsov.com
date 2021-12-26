@@ -11,6 +11,7 @@ const MDRoot = ({ children }: MDPropsWithChildren) => <>{children}</>
 const MDParagraph = ({ children }: MDPropsWithChildren) => <p>{children}</p>
 const MDEmphasis = ({ children }: MDPropsWithChildren) => <em>{children}</em>
 const MDStrong = ({ children }: MDPropsWithChildren) => <strong>{children}</strong>
+const MDBlockquote = ({ children }: MDPropsWithChildren) => <blockquote>{children}</blockquote>
 const MDOrderedList = ({ children }: MDPropsWithChildren) => <ol>{children}</ol>
 const MDUnorderedList = ({ children }: MDPropsWithChildren) => <ul>{children}</ul>
 const MDListItem = ({ children }: MDPropsWithChildren) => <li>{children}</li>
@@ -82,6 +83,9 @@ const getMarkdownASTParentNodeData = (ast: ASTNode): ParentNodeData => {
 
     case 'strong':
       return { component: MDStrong, }
+    
+    case 'blockquote':
+      return { component: MDBlockquote, }
 
     case 'heading':
       const { depth = 2 } = ast
@@ -112,8 +116,16 @@ const MarkdonwASTLiteralNode = (props: MarkdownProps) => {
   const { ast } = props
   switch (ast.type) {
     case 'text':
-      const { value } = ast
-      return <>{value}</>
+      const { value: textValue } = ast
+      return <>{textValue}</>
+
+    case 'inlineCode':
+      const { value: codeValue } = ast
+      return <code>{codeValue}</code>
+
+    case 'code':
+      const { value, lang } = ast
+      return <pre><code>{value}</code></pre>
 
     case 'image':
       const { url, alt, title, data } = ast

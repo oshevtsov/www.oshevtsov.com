@@ -7,6 +7,7 @@
 }
 
 .content {
+  width: 100%;
   max-width: 100rem;
   margin: 0 auto;
   @include default-flex(3rem, column);
@@ -71,6 +72,57 @@
 
     li > p:not(:first-child) {
       margin-top: 1rem;
+    }
+  }
+
+  code {
+    font-size: 85%;
+    display: inline-block;
+    padding: 0.2rem 0.4rem;
+    border-radius: 0.6rem;
+    background-color: v.$color-gray-dark-3;
+  }
+
+  pre {
+    overflow: auto;
+    border-radius: 0.6rem;
+  }
+
+  pre > code {
+    line-height: 1.45;
+    padding: 1.6rem;
+  }
+
+  blockquote {
+    padding: 3.2rem;
+    background-color: v.$color-gray-dark-2;
+    position: relative;
+
+    &::before,
+    &::after {
+      line-height: 1;
+      font-size: 350%;
+      position: absolute;
+    }
+
+    &::before {
+      content: '\201C';
+      top: 0.2rem;
+      left: 0.6rem;
+    }
+
+    &::after {
+      content: '\201D';
+      bottom: -3.2rem;
+      right: 0.6rem;
+    }
+
+    p {
+      font-style: italic;
+
+      &:not(:first-child) {
+        margin-top: 1.5rem;
+      }
     }
   }
 }

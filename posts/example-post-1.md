@@ -36,3 +36,40 @@ This is my first ordered list:
 3. Adipisicing iste excepturi dolorem doloribus quo consequuntur numquam Architecto quas sit incidunt saepe ducimus. Atque omnis qui nulla voluptate officiis Sapiente magnam quae corporis in quos? Ea non quos quis officia explicabo. Error non amet non temporibus voluptates magni? Amet!
 
 Here is a link to [another page on the same site](/blog/example-post-2 "Second post").
+
+Here is a line with a `def foo(x: string, y: string)`. And here is an example of a code block
+
+```
+def plus(x, y):
+    return x + y
+```
+
+```js
+import {toH} from 'hast-to-hyperscript'
+import h from 'hyperscript'
+
+const tree = {
+  type: 'element',
+  tagName: 'p',
+  properties: {id: 'alpha', className: ['bravo']},
+  children: [
+    {type: 'text', value: 'charlie '},
+    {
+      type: 'element',
+      tagName: 'strong',
+      properties: {style: 'color: red;'},
+      children: [{type: 'text', value: 'delta'}]
+    },
+    {type: 'text', value: ' echo.'}
+  ]
+}
+
+// Transform (`hyperscript` needs `outerHTML` to serialize):
+const doc = toH(h, tree).outerHTML
+
+console.log(doc)
+```
+
+> Lorem excepturi ipsam quod quisquam ullam Similique beatae accusamus quia vitae nam labore tenetur, quis. Lorem excepturi ipsam quod quisquam ullam Similique beatae accusamus quia vitae nam labore tenetur, quis.
+>
+> Lorem excepturi ipsam quod quisquam ullam Similique beatae accusamus quia vitae nam labore tenetur, quis. Lorem excepturi ipsam quod quisquam ullam Similique beatae accusamus quia vitae nam labore tenetur, quis.
