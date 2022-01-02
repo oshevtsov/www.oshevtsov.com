@@ -4,6 +4,7 @@ interface Props {
   className?: string;
 }
 
+/* eslint-disable */
 const ProfileImageArtDirection = ({ className }: Props) => {
   return (
     <div className={className}>
