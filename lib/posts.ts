@@ -11,10 +11,9 @@ import { imageSize } from 'image-size'
 import { Transformer } from 'unified'
 import { cleanNodes, Root } from './utils'
 
-const stripMdExtension = (fileName: string): string =>
-  fileName.replace(/\.md$/, '')
 const postsDirectory: string = path.join(process.cwd(), 'posts')
 const publicDirectory: string = path.join(process.cwd(), 'public')
+const stripMdExtension = (fileName: string): string => fileName.replace(/\.md$/, '')
 
 function parseMarkdown(fullPath: string): VFile {
   return matter(vfile.readSync(fullPath), { strip: true })
