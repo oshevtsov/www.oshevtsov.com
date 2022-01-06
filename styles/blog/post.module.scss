@@ -41,6 +41,7 @@
 
 .markdown {
   @include default-flex(1.5rem, column);
+  align-items: flex-start;
 
   figure {
     width: 100%;
@@ -84,7 +85,7 @@
   }
 
   pre {
-    overflow: auto;
+    overflow-x: auto;
     border-radius: 0.6rem;
   }
 

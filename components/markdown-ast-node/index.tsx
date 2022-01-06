@@ -1,6 +1,8 @@
 import React from 'react'
 import Image from 'next/image'
 import Link from 'next/link'
+import { LightAsync as SynaxtHighlighter } from 'react-syntax-highlighter'
+import highlightStyle from 'react-syntax-highlighter/dist/cjs/styles/hljs/tomorrow-night-bright'
 import { isParent, ASTNode, Content } from '../../lib/utils'
 import styles from '../../styles/blog/post.module.scss'
 
@@ -125,7 +127,14 @@ const MarkdonwASTLiteralNode = (props: MarkdownProps) => {
 
     case 'code':
       const { value, lang } = ast
-      return <pre><code>{value}</code></pre>
+      const language = lang ? lang : undefined
+      const color = highlightStyle.hljs.color
+      highlightStyle.hljs = { color }
+      return (
+        <SynaxtHighlighter language={language} style={highlightStyle}>
+          {value}
+        </SynaxtHighlighter>
+      )
 
     case 'image':
       const { url, alt, title, data } = ast

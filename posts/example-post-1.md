@@ -39,12 +39,12 @@ Here is a link to [another page on the same site](/blog/example-post-2 "Second p
 
 Here is a line with a `def foo(x: string, y: string)`. And here is an example of a code block
 
-```
+```python
 def plus(x, y):
     return x + y
 ```
 
-```js
+```javascript
 import {toH} from 'hast-to-hyperscript'
 import h from 'hyperscript'
 
