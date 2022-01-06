@@ -6,6 +6,7 @@ import Layout from '../components/layout'
 import GitHubIcon from '../components/icons/github'
 import GitLabIcon from '../components/icons/gitlab'
 import LinkedInIcon from '../components/icons/linkedin'
+import TwitterIcon from '../components/icons/twitter'
 import EmailIcon from '../components/icons/email'
 import styles from '../styles/contact.module.scss'
 
@@ -30,6 +31,11 @@ const contacts: ContactData[] = [
     url: "https://gitlab.com/oshevtsov",
     displayUrl: "gitlab.com/oshevtsov",
     icon: <GitLabIcon />,
+  },
+  {
+    url: "https://twitter.com/OleksiiShevtsov",
+    displayUrl: "@OleksiiShevtsov",
+    icon: <TwitterIcon />,
   },
   {
     url: "alex.shevtsov1988@gmail.com",
