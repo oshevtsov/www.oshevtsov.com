@@ -26,7 +26,8 @@ const Blog: NextPage<Props> = ({ allPostsData }) => {
       containerClassName={styles.container}
     >
       <Head>
-        <meta name="description" content="Blog" />
+        <meta name="description" content="Personal blog of Oleksii Shevtsov, PhD" />
+        <meta key="og:description" property="og:description" content="Personal blog of Oleksii Shevtsov, PhD" />
       </Head>
 
       <h1>Blog</h1>

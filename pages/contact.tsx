@@ -54,7 +54,8 @@ const Home: NextPage = () => {
   return (
     <Layout contentClassName={styles.content} containerClassName={styles.container}>
       <Head>
-        <meta name="description" content="Contact" />
+        <meta name="description" content="Contact details of Oleksii Shevtsov, PhD" />
+        <meta key="og:description" property="og:description" content="Contact details of Oleksii Shevtsov, PhD" />
       </Head>
 
       <div className={styles.text}>

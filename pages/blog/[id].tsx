@@ -43,7 +43,8 @@ const Post: NextPage<PostData> = ({ frontMatter, mdRoot }) => {
       containerClassName={styles.container}
     >
       <Head>
-        <meta name="title" content="Post" />
+        <meta name="description" content={frontMatter.abstract} />
+        <meta key="og:description" property="og:description" content={frontMatter.abstract} />
       </Head>
 
       <div className={styles.back}>
