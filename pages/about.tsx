@@ -1,8 +1,8 @@
-import { NextPage } from 'next';
-import Head from 'next/head';
-import Image from 'next/image';
-import Layout from '../components/layout';
-import styles from '../styles/about.module.scss';
+import { NextPage } from 'next'
+import Head from 'next/head'
+import Image from 'next/image'
+import Layout from '../components/layout'
+import styles from '../styles/about.module.scss'
 
 const About: NextPage = () => {
   return (
@@ -17,7 +17,7 @@ const About: NextPage = () => {
 
       <div className={styles.img}>
         <Image
-          src="/images/oleksii-mobile.png"
+          src="/images/oleksii-mobile.webp"
           alt="Oleksii Shevtsov"
           width={360}
           height={325}
@@ -90,7 +90,7 @@ const About: NextPage = () => {
         </a>
       </section>
     </Layout>
-  );
-};
+  )
+}
 
-export default About;
+export default About
