@@ -21,6 +21,7 @@ const About: NextPage = () => {
           alt="Oleksii Shevtsov"
           width={360}
           height={325}
+          priority
         />
       </div>
       <h1 className={styles.mt4}>About me</h1>
