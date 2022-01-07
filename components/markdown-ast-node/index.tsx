@@ -2,6 +2,7 @@ import React from 'react'
 import Image from 'next/image'
 import Link from 'next/link'
 import { LightAsync as SynaxtHighlighter } from 'react-syntax-highlighter'
+import sanitizeHtml from 'sanitize-html'
 import highlightStyle from 'react-syntax-highlighter/dist/cjs/styles/hljs/tomorrow-night-bright'
 import { isParent, ASTNode, Content } from '../../lib/utils'
 import styles from '../../styles/blog/post.module.scss'
@@ -155,7 +156,7 @@ const MarkdonwASTLiteralNode = (props: MarkdownProps) => {
           />
           {
             optionalAttrs.title
-              ? <figcaption>{optionalAttrs.title}</figcaption>
+              ? <figcaption dangerouslySetInnerHTML={{__html: sanitizeHtml(optionalAttrs.title.toString())}} />
               : null
           }
         </figure>

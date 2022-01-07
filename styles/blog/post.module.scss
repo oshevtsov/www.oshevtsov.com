@@ -43,6 +43,10 @@
   @include default-flex(1.5rem, column);
   align-items: flex-start;
 
+  h2 {
+    margin-top: 1rem;
+  }
+
   figure {
     width: 100%;
     text-align: center;
