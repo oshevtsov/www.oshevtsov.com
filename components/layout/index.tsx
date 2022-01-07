@@ -45,6 +45,7 @@ const Layout = ({ contentClassName, containerClassName, children }: Props) => {
         <meta property="og:image:width" content="1200" />
         <meta property="og:image:height" content="627" />
         <meta property="og:url" content={`${domainURL}${relativePath}`} />
+        <meta property="og:type" content="website" />
         <meta property="twitter:card" content="summary_large_image" />
       </Head>
 
