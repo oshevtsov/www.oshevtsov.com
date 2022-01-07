@@ -39,3 +39,6 @@ yarn-error.log*
 # SEO
 sitemap.xml
 robots.txt
+
+# Local Netlify folder
+.netlify
