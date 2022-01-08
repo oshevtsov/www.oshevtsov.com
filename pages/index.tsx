@@ -11,10 +11,12 @@ const jsonLD = {
   "name": "Homepage of Oleksii Shevtsov, PhD",
   "url": packageJSON.author.url,
   "sameAs": [
-    "https://www.linkedin.com/in/oleksii-shevtsov",
-    "https://github.com/oshevtsov",
-    "https://gitlab.com/oshevtsov",
-    "https://twitter.com/OleksiiShevtsov",
+    "https://www.linkedin.com/in/oleksii-shevtsov/",
+    "https://twitter.com/OleksiiShevtsov/",
+    "https://www.facebook.com/oleksii.shevtsov/",
+    "https://www.researchgate.net/profile/Oleksii-Shevtsov/",
+    "https://github.com/oshevtsov/",
+    "https://gitlab.com/oshevtsov/",
   ],
   "author": {
     "@type": "Person",
