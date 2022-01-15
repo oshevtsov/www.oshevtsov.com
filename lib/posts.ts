@@ -3,13 +3,13 @@ import path from 'path'
 import { toVFile as vfile } from 'to-vfile'
 import { matter, VFile } from 'vfile-matter'
 import { format, formatISO, compareDesc } from 'date-fns'
-import { unified } from 'unified'
+import { unified, Transformer } from 'unified'
 import remarkParse from 'remark-parse'
 import remarkUnwrapImages from 'remark-unwrap-images'
 import { visit } from 'unist-util-visit'
 import { imageSize } from 'image-size'
-import { Transformer } from 'unified'
 import { cleanNodes, Root } from './utils'
+import hljs from 'highlight.js'
 
 const postsDirectory: string = path.join(process.cwd(), 'posts')
 const publicDirectory: string = path.join(process.cwd(), 'public')
@@ -128,6 +128,21 @@ function addImageMetadata(): Transformer<Root, Root> {
   }
 }
 
+function highlightCodeBlocks(): Transformer<Root, Root> {
+  return (tree: Root, _) => {
+    visit(tree, 'code', (node) => {
+      const rawCode = node.value
+      const lang = node.lang
+      let highlightedCode = rawCode
+
+      if (lang) {
+        highlightedCode = hljs.highlight(rawCode, {language: lang}).value
+      }
+      node.value = highlightedCode
+    })
+  }
+}
+
 export function getPostData(id: string | string[]): PostData {
   const postId = typeof id === 'string' ? id : id.join('-')
   const fullPath = path.join(postsDirectory, `${postId}.md`)
@@ -137,6 +152,7 @@ export function getPostData(id: string | string[]): PostData {
     .use(remarkParse)
     .use(remarkUnwrapImages)
     .use(addImageMetadata)
+    .use(highlightCodeBlocks)
   const mdRoot: Root = pipeline.runSync(pipeline.parse(file))
   cleanNodes(mdRoot)
 

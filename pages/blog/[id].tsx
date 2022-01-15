@@ -1,13 +1,12 @@
-import React from 'react'
 import { NextPage, GetStaticPaths, GetStaticProps } from 'next';
 import Head from 'next/head'
 import { useRouter } from 'next/router'
 import Layout from '../../components/layout';
-import styles from '../../styles/blog/post.module.scss'
-
 import MarkdownASTNode from '../../components/markdown-ast-node'
 import Date from '../../components/date'
 import { getAllPostIds, getPostData, PostData } from '../../lib/posts'
+import styles from '../../styles/blog/post.module.scss'
+import 'highlight.js/styles/stackoverflow-dark.css'
 
 export const getStaticProps: GetStaticProps = async (context) => {
   const postId = context.params?.id
