@@ -1,11 +1,8 @@
 import React from 'react'
 import Image from 'next/image'
 import Link from 'next/link'
-import { LightAsync as SynaxtHighlighter } from 'react-syntax-highlighter'
 import sanitizeHtml from 'sanitize-html'
-import highlightStyle from 'react-syntax-highlighter/dist/cjs/styles/hljs/tomorrow-night-bright'
 import { isParent, ASTNode, Content } from '../../lib/utils'
-import styles from '../../styles/blog/post.module.scss'
 
 type MDPropsWithChildren = React.PropsWithChildren<{}>
 type HeadingDepth = 1 | 2 | 3 | 4 | 5 | 6
@@ -127,15 +124,8 @@ const MarkdonwASTLiteralNode = (props: MarkdownProps) => {
       return <code>{codeValue}</code>
 
     case 'code':
-      const { value, lang } = ast
-      const language = lang ? lang : undefined
-      const color = highlightStyle.hljs.color
-      highlightStyle.hljs = { color }
-      return (
-        <SynaxtHighlighter language={language} style={highlightStyle}>
-          {value}
-        </SynaxtHighlighter>
-      )
+      const { value } = ast
+      return <pre><code dangerouslySetInnerHTML={{__html: value}} /></pre>
 
     case 'image':
       const { url, alt, title, data } = ast
@@ -147,7 +137,7 @@ const MarkdonwASTLiteralNode = (props: MarkdownProps) => {
       }
       const shouldDisplay = (optionalAttrs.width > 0) && (optionalAttrs.height > 0)
       return shouldDisplay ? (
-        <figure className={styles.image}>
+        <figure>
           <Image
             src={url}
             alt={alt ? alt : ""}
